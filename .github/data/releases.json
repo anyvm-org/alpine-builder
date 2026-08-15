@@ -1,0 +1,41 @@
+{
+  "os": "alpine",
+  "releases": [
+    {
+      "tag": "3.23",
+      "release": "3.23",
+      "arch": "x86_64",
+      "sync": "rsync,scp,sshfs,nfs,tar",
+      "shutdown": "poweroff",
+      "desktop": false,
+      "build": true
+    },
+    {
+      "tag": "3.23-aarch64",
+      "release": "3.23",
+      "arch": "aarch64",
+      "sync": "rsync,scp,sshfs,nfs,tar",
+      "shutdown": "poweroff",
+      "desktop": false,
+      "build": true
+    },
+    {
+      "tag": "3.24",
+      "release": "3.24",
+      "arch": "x86_64",
+      "sync": "rsync,scp,sshfs,nfs,tar",
+      "shutdown": "poweroff",
+      "desktop": false,
+      "build": true
+    },
+    {
+      "tag": "3.24-aarch64",
+      "release": "3.24",
+      "arch": "aarch64",
+      "sync": "rsync,scp,sshfs,nfs,tar",
+      "shutdown": "poweroff",
+      "desktop": false,
+      "build": true
+    }
+  ]
+}
