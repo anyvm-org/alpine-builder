@@ -14,3 +14,17 @@ patch version and an image revision in the filename and publishes no
 `latest` alias, but it keeps older patch images in the branch directory --
 so the pin is durable, and moving a release to a newer patch is an in-place
 URL edit rather than a new release row.
+
+How the images are built:
+
+Each image is built automatically in the
+[anyvm-org/alpine-builder](https://github.com/anyvm-org/alpine-builder)
+repo's GitHub Actions: it downloads the official Alpine Linux generic
+cloud image, customizes it (serial console, ssh, first-boot setup),
+boots it in QEMU, pre-installs the packages listed in the conf, and
+exports the disk as a compressed qcow2 image. No interactive installer
+is run.
+
+Upstream media: the official Alpine cloud images from
+https://dl-cdn.alpinelinux.org/alpine/ (overview:
+https://alpinelinux.org/cloud/).
