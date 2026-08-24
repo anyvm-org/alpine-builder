@@ -17,6 +17,18 @@ rc-update add sshd default 2>/dev/null || true
 # disable here. That is the whole reason this hook is so much shorter than
 # the Debian and RHEL ones.
 
+# Auto-load fuse at boot. The linux-virt kernel builds fuse as a module and
+# OpenRC auto-loads nothing, so without this /dev/fuse does not exist and
+# every sshfs mount fails with "fuse: device /dev/fuse not found. Kernel
+# module not loaded?" (anyvm run 32681102105: all four sshfs legs red;
+# verified in a local guest that modprobe fuse alone fixes the identical
+# mount). OpenRC's modules service reads /etc/modules in the boot runlevel;
+# the cloud image already has that service enabled, but rc-update is
+# idempotent and cheap, so make sure rather than assume.
+echo "--- adding fuse to /etc/modules ---"
+grep -qx fuse /etc/modules 2>/dev/null || echo fuse >> /etc/modules
+rc-update add modules boot 2>/dev/null || true
+
 # NOTE: do NOT run "cloud-init clean" here. build.py reboots right after
 # this hook, and a clean makes cloud-init treat the next boot as a new
 # instance, which (via ssh_deletekeys) regenerates the SSH host keys. The
