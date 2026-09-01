@@ -36,6 +36,15 @@
       "shutdown": "poweroff",
       "desktop": false,
       "build": true
+    },
+    {
+      "tag": "3.24-riscv64",
+      "release": "3.24",
+      "arch": "riscv64",
+      "sync": "rsync,scp,sshfs,nfs,tar",
+      "shutdown": "poweroff",
+      "desktop": false,
+      "build": true
     }
   ]
 }
